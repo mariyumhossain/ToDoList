@@ -23,28 +23,30 @@ class TodoList extends Component{
     addItem = event => {
       event.preventDefault()
       this.setState( prevState => {
-        var todo = prevState.todos.concat(this.state.currentToDo)
+        const todo = prevState.todos.concat(this.state.currentToDo)
         return {
           todos: todo,
-           currentToDo: ''
+           currentToDo: '',
       }
       })
     }
 
+ 
   render(){
     const listItems = this.state.todos.map(td => 
-      <ul key={this.state.todos.indexOf(td)}>{td}</ul>)
+    <li key={td}>{td}</li>)
     return (
 
       <div className="container">
         <form onSubmit={this.addItem}>
           <label htmlFor="taskName"> Task Name: </label>
-    <div>
-    <h2>{listItems}</h2>
-      <button>Delete</button>
-    </div>
-          <input onChange={this.handleChange} value={this.state.currentToDo} name="taskName" type="text" placeholder="Type ToDo here!"></input>
-          <button type="submit" > Add Task</button>
+    <h1>{listItems} </h1> 
+          <input onChange={this.handleChange} 
+          value={this.state.currentToDo} 
+          name="taskName" 
+          type="text" 
+          placeholder="Type ToDo here!"></input>
+          <button type="submit"> Add Task</button>
         </form>
       </div>
     )
